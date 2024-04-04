@@ -1,8 +1,6 @@
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import dayjs from "dayjs";
-import { apiBaseUrl } from "../utils/API";
-import Auth from "../utils/auth";
 
 function AddCustomer({ onDataUpdate }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,11 +18,10 @@ function AddCustomer({ onDataUpdate }) {
 
   const createNewCustomerAPI = async () => {
     try {
-      const response = await fetch(`${apiBaseUrl}/api/customer`, {
+      const response = await fetch("/api/customer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + Auth.getToken(),
         },
         body: JSON.stringify({
           firstName: formData.firstName,

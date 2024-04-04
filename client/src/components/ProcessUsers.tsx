@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSort } from "@fortawesome/free-solid-svg-icons";
 import Modal from "react-bootstrap/Modal";
 import Auth from "../utils/auth";
-import { apiBaseUrl } from "../utils/API";
 
 interface User {
   id: number;
@@ -75,7 +74,7 @@ function ProcessUsers({ users, onDataUpdate }) {
   }, [users]);
 
   const sendEmail = async () => {
-    const response = await fetch(`${apiBaseUrl}/api/autoEmail/sendmail`, {
+    const response = await fetch(`/api/autoEmail/sendmail`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -102,7 +101,7 @@ function ProcessUsers({ users, onDataUpdate }) {
 
   const updateCustomerEmail = async () => {
     const response = await fetch(
-      `${apiBaseUrl}/api/customer/updateEmail/${selectedUser.id}`,
+      `/api/customer/updateEmail/${selectedUser.id}`,
       {
         method: "PUT",
         headers: {
@@ -180,31 +179,28 @@ function ProcessUsers({ users, onDataUpdate }) {
     try {
       console.log("this is what's updating:", formValues);
       console.log(typeof formValues.numUnits);
-      const response = await fetch(
-        `${apiBaseUrl}/api/customer/${selectedUser.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + Auth.getToken(),
-          },
-          body: JSON.stringify({
-            firstName: formValues.firstName,
-            lastName: formValues.lastName,
-            tier: formValues.tier,
-            address: formValues.address,
-            signDate: formatDate(formValues.signDate),
-            nextServiceDate: formatDate(formValues.nextServiceDate),
-            lastServiceDate: formatDate(formValues.lastServiceDate),
-            phone: formValues.phone,
-            email: formValues.email,
-            notes: formValues.notes,
-            equipment: formValues.equipment,
-            lastEmailSent: formatDate(formValues.lastEmailSent),
-            numUnits: formValues.numUnits,
-          }),
-        }
-      );
+      const response = await fetch(`/api/customer/${selectedUser.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Auth.getToken(),
+        },
+        body: JSON.stringify({
+          firstName: formValues.firstName,
+          lastName: formValues.lastName,
+          tier: formValues.tier,
+          address: formValues.address,
+          signDate: formatDate(formValues.signDate),
+          nextServiceDate: formatDate(formValues.nextServiceDate),
+          lastServiceDate: formatDate(formValues.lastServiceDate),
+          phone: formValues.phone,
+          email: formValues.email,
+          notes: formValues.notes,
+          equipment: formValues.equipment,
+          lastEmailSent: formatDate(formValues.lastEmailSent),
+          numUnits: formValues.numUnits,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Failed to update new customer"); // Throw error for non-200 responses
@@ -241,16 +237,13 @@ function ProcessUsers({ users, onDataUpdate }) {
 
   const deleteCustomerAPI = async () => {
     try {
-      const response = await fetch(
-        `${apiBaseUrl}/api/customer/${selectedUser.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + Auth.getToken(),
-          },
-        }
-      );
+      const response = await fetch(`/api/customer/${selectedUser.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + Auth.getToken(),
+        },
+      });
 
       if (!response.ok) {
         throw new Error("Failed to delete customer"); // Throw error for non-200 responses
@@ -267,7 +260,6 @@ function ProcessUsers({ users, onDataUpdate }) {
       const message = await reply.message;
       if (message === "Customer deleted successfully") {
         onDataUpdate();
-        window.location.reload();
         console.log("Should render all data");
       }
     } catch (error) {

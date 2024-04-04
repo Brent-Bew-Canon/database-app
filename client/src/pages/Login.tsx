@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiBaseUrl } from "../utils/API";
 import Auth from "../utils/auth.ts";
 
 function Login() {
@@ -14,7 +13,7 @@ function Login() {
     event.preventDefault();
     try {
       //   console.log(formState);
-      const response = await fetch(`${apiBaseUrl}/api/users/login`, {
+      const response = await fetch(`/api/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -7,10 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-notes.txt
 node_modules
-package-lock.json
-.env
 dist
 dist-ssr
 *.local
@@ -25,4 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-todo.txt

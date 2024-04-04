@@ -1,5 +1,5 @@
-function HtmlMailTest(name: string, date) {
-  return `<!DOCTYPE html>
+function silverTier(name, date) {
+    return `<!DOCTYPE html>
 
   <html lang="en" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">
   
@@ -116,7 +116,7 @@ function HtmlMailTest(name: string, date) {
                                                                   <div align="center" class="alignment"
                                                                       style="line-height:10px">
                                                                       <div style="max-width: 600px;"><img
-                                                                              src="https://gym-genius.s3.us-east-2.amazonaws.com/ackings.png"
+                                                                              src="https://gym-genius.s3.us-east-2.amazonaws.com/Database.png"
                                                                               style="display: block; height: auto; border: 0; width: 100%;"
                                                                               width="600" /></div>
                                                                   </div>
@@ -135,8 +135,8 @@ function HtmlMailTest(name: string, date) {
                                                                       style="color:#101112;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;">
                                                                       <p style="margin: 0; margin-bottom: 16px;">Hi ${name}!
                                                                           This is your reminder of your appointment with
-                                                                          Ac Kings on <strong>${date}</strong>. </p>
-                                                                      <p style="margin: 0;">As a Gold member, we will be
+                                                                          us on <strong>${date}</strong>. </p>
+                                                                      <p style="margin: 0;">As a Bronze member, we will be
                                                                           checking up on the following for your AC
                                                                           systems:</p>
                                                                   </div>
@@ -187,7 +187,7 @@ function HtmlMailTest(name: string, date) {
                                                                           scheduled changes to your appointment. </p>
                                                                       <p style="margin: 0; margin-bottom: 16px;">Thank
                                                                           you, and see you soon!</p>
-                                                                      <p style="margin: 0;">- Ac Kings</p>
+                                                                      <p style="margin: 0;">- Database App</p>
                                                                   </div>
                                                               </td>
                                                           </tr>
@@ -203,10 +203,10 @@ function HtmlMailTest(name: string, date) {
                   </td>
               </tr>
           </tbody>
-      </table><!-- End -->
+      </table>
   </body>
   
   </html>`;
 }
 
-export default HtmlMailTest;
+module.exports = silverTier 
