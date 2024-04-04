@@ -49,7 +49,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.put('/sendmail', authenticateToken, async (req, res) => {
+router.put('/sendmail', async (req, res) => {
     let html
     try {
         if (req.body.tier === "Gold") {
