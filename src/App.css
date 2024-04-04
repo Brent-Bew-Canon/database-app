@@ -1,0 +1,8 @@
+.noHover:hover {
+  cursor: default;
+}
+
+.noHover:focus {
+  outline: none;
+  border: none;
+}
